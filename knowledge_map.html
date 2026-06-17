@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gold Macro Trading — Knowledge Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F1F4F8;--white:#FFFFFF;
+  --gold:#D4A017;--gold2:#E8B820;--gold-l:rgba(212,160,23,.10);--gold-br:rgba(212,160,23,.3);
+  --blue:#1A56DB;--blue-l:rgba(26,86,219,.08);--blue-br:rgba(26,86,219,.25);
+  --grn:#059669;--grn-l:#ECFDF5;--grn-br:#A7F3D0;
+  --red:#DC2626;--red-l:#FEF2F2;--red-br:#FECACA;
+  --amb:#D97706;--amb-l:#FFFBEB;--amb-br:#FDE68A;
+  --pur:#7C3AED;--pur-l:#F5F3FF;--pur-br:#DDD6FE;
+  --tx:#0F172A;--tx2:#475569;--tx3:#94A3B8;
+  --border:#E2E8F0;--border2:#CBD5E1;
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;
+}
+html,body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:13px}
+body{padding:24px}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#0A0800,#1A1400);border-radius:14px;padding:28px 32px;margin-bottom:20px;color:#fff}
+.header-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--gold2);text-transform:uppercase;margin-bottom:10px}
+.header-title{font-size:26px;font-weight:700;color:#fff;margin-bottom:6px}
+.header-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* SECTION */
+.section{background:var(--white);border:1.5px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.section-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.section-head:hover{background:var(--bg)}
+.sec-num{width:28px;height:28px;border-radius:7px;background:var(--gold);color:#0A0800;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono)}
+.sec-title{font-size:14px;font-weight:700;flex:1}
+.sec-chevron{font-size:12px;color:var(--tx3);transition:transform .2s}
+.sec-chevron.open{transform:rotate(180deg)}
+.section-body{padding:16px 20px;display:none}
+.section-body.open{display:block}
+
+/* BULLETS */
+.bullets{display:flex;flex-direction:column;gap:8px}
+.bullet{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border);line-height:1.6;font-size:12.5px;color:var(--tx2)}
+.bullet-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+.bullet strong{color:var(--tx);font-weight:600}
+.bullet em{color:var(--gold);font-style:normal;font-weight:600}
+
+/* FORMULA BOX */
+.formula{background:var(--gold-l);border:1.5px solid var(--gold-br);border-radius:8px;padding:12px 16px;margin:10px 0;font-family:var(--mono);font-size:13px;color:var(--tx)}
+.formula-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:4px}
+
+/* TWO COL TABLE */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.col-card{border-radius:8px;padding:12px 14px;border:1.5px solid transparent}
+.col-card.bear{background:var(--red-l);border-color:var(--red-br)}
+.col-card.bull{background:var(--grn-l);border-color:var(--grn-br)}
+.col-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.col-card.bear .col-card-title{color:var(--red)}
+.col-card.bull .col-card-title{color:var(--grn)}
+.col-item{font-size:11.5px;color:var(--tx2);line-height:1.6;padding:3px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.col-item:last-child{border-bottom:none}
+
+/* DATA TABLE */
+.data-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+.data-table th{background:var(--bg);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);padding:8px 12px;text-align:left;border-bottom:1.5px solid var(--border)}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--tx2);vertical-align:top;line-height:1.5}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:var(--bg)}
+.td-bull{color:var(--grn);font-weight:600}
+.td-bear{color:var(--red);font-weight:600}
+.td-neut{color:var(--amb);font-weight:600}
+.td-mono{font-family:var(--mono);font-weight:600}
+
+/* MISTAKE TABLE */
+.mistake-grid{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.mistake{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.mistake-cell-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tx3);margin-bottom:4px}
+.mistake-cell-val{font-size:12px;color:var(--tx2);line-height:1.55}
+.mistake-name{font-size:12px;font-weight:700;color:var(--red);margin-bottom:6px}
+
+/* RULE PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{font-size:11px;padding:4px 11px;border-radius:20px;font-weight:500}
+.pill-red{background:var(--red-l);color:var(--red);border:1px solid var(--red-br)}
+.pill-gold{background:var(--gold-l);color:var(--amb);border:1px solid var(--gold-br)}
+.pill-blue{background:var(--blue-l);color:var(--blue);border:1px solid var(--blue-br)}
+.pill-grn{background:var(--grn-l);color:var(--grn);border:1px solid var(--grn-br)}
+
+/* DIVIDER */
+.sec-divider{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--tx3);margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+
+/* EXPAND ALL BTN */
+.controls{display:flex;gap:8px;margin-bottom:14px}
+.ctrl-btn{padding:6px 14px;border-radius:7px;border:1.5px solid var(--border2);background:var(--white);font-size:11px;font-weight:600;cursor:pointer;color:var(--tx2);transition:all .15s}
+.ctrl-btn:hover{border-color:var(--gold);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Personal Reference Document</div>
+  <div class="header-title">Gold Macro Trading — Complete Knowledge Map</div>
+  <div class="header-sub">Eight Weeks · May – June 2026 · Every framework, formula, topic, mistake and forward focus area</div>
+</div>
+
+<div class="controls">
+  <button class="ctrl-btn" onclick="expandAll()">Expand all</button>
+  <button class="ctrl-btn" onclick="collapseAll()">Collapse all</button>
+</div>
+
+<!-- 01 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">01</div>
+    <div class="sec-title">Core Macro Frameworks — Gold</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body open">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Two-channel gold model</strong> — fear/geopolitics channel (war premium, CB buying) and inflation chain channel (oil → CPI → Fed → yields → DXY → gold)</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Four-step headline framework</strong> — Step 0 expectation theory, Step 1 real yields (DFII10 + T10YIE), Step 2 Fed channel (hike/cut probability), Step 3 fear channel (war premium). <em>Channels aligned = trade, channels fighting = wait.</em></div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Business cycle four phases</strong> — Phase 1 recovery, Phase 2 expansion, Phase 3 late cycle (GDP slowing, CPI sticky, Fed paused), Phase 4 recession (forced cuts). Gold most bullish in late Phase 3 loading into Phase 4.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Five regime variables</strong> — Fed reaction function, DXY direction, real yields level, geopolitical premium size, Western ETF flows. All five flipped bearish when Warsh announced January 29 2026.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Stagflation trap</strong> — economy too weak to justify hiking, inflation too high to justify cutting. Fed frozen. Gold in a holding pattern until one side breaks.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Expectation theory</strong> — the move is always relative to what was already priced. A hot print is bearish only if it beats consensus. Size of the surprise determines size of the move.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Historical analogs</strong> — 1973 OPEC oil shock (supply shock + inflation + forced hike), 2007-09 GFC (Phase 3→4, gold $651→$1,911), 2019-20 COVID (Phase 4 flush -14%, QE, gold +40% in 5 months)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">02</div>
+    <div class="sec-title">Real Yield Framework</div>
+    <div class="sec-chevron open">▼</div>
+  </div>
+  <div class="section-body open">
+    <div class="formula">
+      <div class="formula-lbl">Core formula</div>
+      Real yield = Nominal (DGS10) − Breakeven (T10YIE) = DFII10 · This is the primary ceiling on gold
+    </div>
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>TradingView</strong> — TVC:US10Y minus FRED:T10YIE for real-time real yield. Open every morning before looking at price.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Key levels</strong> — <em>above +2% headwind</em>, near 0% bullish, negative explosive. Current: +2.17% = active ceiling.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Decomposition rule</strong> — if nominals rise faster than breakevens: real yields rise, bearish. If breakevens rise faster than nominals: real yields fall, bullish. <em>Breakevens rising is gold's friend.</em></div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Correction learned</strong> — breakevens rising compresses real yields (bullish). Initial analysis had this backwards. Nominals rising is the bearish driver.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>What compresses the ceiling</strong> — deal confirmed + oil below $85 → CPI falls → Fed cuts → real yields compress → gold launches.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">03</div>
+    <div class="sec-title">Yield Curve Framework</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Bull steepening</strong> — Fed cutting, most bullish gold. Front end falls faster than long end.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Bear steepening</strong> — inflation driven, mildly bullish. Long end rises on inflation expectations.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Bull flattening</strong> — growth scare, mildly bullish. Long end compressed by safety demand.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Bear flattening</strong> — Fed hiking, <em>most bearish gold</em>. Current post-NFP 172K shape. Front end up more.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>10-2 spread</strong> — TVC:US10Y minus TVC:US02Y. Monitor daily. Currently +0.39% = late-cycle flattening.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Bear flattener trade</strong> — short ZT (2yr futures) long ZB (30yr futures) at 4:1 ratio. DV01: ZT ~$34/bp, ZB ~$128/bp. NFP 172K result: 2yr +11bp, 30yr +2bp = ~$1,500 profit per grouping.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">04</div>
+    <div class="sec-title">Fed and Monetary Policy</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Warsh as Chair</strong> — sworn in May 15 2026. First FOMC June 16-17. Watches trimmed mean inflation (Dallas Fed) not headline CPI. Has not given policy speech in 6-9 months.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Trimmed mean significance</strong> — strips extreme price movements both tails. Dallas Fed trimmed mean was falling even when headline CPI was rising. <em>Warsh's cover to avoid hiking.</em></div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Waller hike trigger</strong> — Michigan 5yr inflation expectations 3.9% vs 3.4% forecast May 22. Would not hesitate to hike if expectations become unanchored.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Peak hawkishness</strong> — May 22 identified as the peak. Yields have come down since. Hike probability post-NFP 172K: 85-90% for December.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>June 17 FOMC</strong> — 96% priced for no change. Real binary: Warsh's press conference tone. Three listening points: trimmed mean acknowledgement, easing bias retained, Iran de-escalation referenced.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Rate path</strong> — no cuts anywhere on 2026 curve. December hike 85-90%. Easing bias under serious threat from NFP 172K.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">05</div>
+    <div class="sec-title">Key Data — Inflation and Labor Market</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="sec-divider">Inflation trackers</div>
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>PCE MoM</strong> — monthly pace, what the Fed watches. 0.2% vs 0.3% = soft beat, pace decelerating.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>ISM Manufacturing Prices</strong> — goods input inflation. 82.1 vs 85.3 = below forecast, passthrough from oil moderating.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>ISM Services Prices</strong> — services inflation, wage-price spiral detection. 71.3 vs 72.3 = below forecast.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Three consecutive below forecast</strong> — PCE MoM, Mfg Prices, Services Prices. Monthly pace decelerating across all three.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Trimmed mean</strong> — 2.55% (PCETRIM1M1). Warsh's preferred. Was falling even as headline CPI rose from oil. His political cover.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Unit labor costs</strong> — 1.8% vs 2.3% forecast. Collapsed from 4.4% prior. <em>No wage-price spiral.</em></div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Average hourly earnings</strong> — 0.3% in line. The line that saved the floor post-NFP. Warsh can hold June 17.</div></div>
+    </div>
+    <div class="sec-divider">Labor market</div>
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>NFP May</strong> — 172K vs 85K consensus. Double the forecast. Two consecutive months near 175K. Confirmed JOLTS signal.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>JOLTS April</strong> — 7.618M vs 6.860M. Massive beat. Job openings to unemployed ratio back above 1:1.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Initial Claims</strong> — 225K vs 214K. Biggest miss since February 2026. Three soft signals before NFP contradicted all.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Contradiction lesson</strong> — JOLTS shows labor demand (openings). NFP shows actual hiring. When they diverge JOLTS tends to lead. This week proved it.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Nonfarm Productivity</strong> — 0.3% vs 0.8% forecast. Businesses less efficient. Stagflationary signal.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">06</div>
+    <div class="sec-title">Gold Ceiling and Floor</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div class="col-card bear">
+        <div class="col-card-title">↓ Ceiling — What presses gold down</div>
+        <div class="col-item">Real yields +2.17% — primary ceiling, opportunity cost vs Treasury</div>
+        <div class="col-item">Fed hike probability 85-90% — December hike nearly fully priced</div>
+        <div class="col-item">DXY above 200-day EMA — dollar not breaking below</div>
+        <div class="col-item">Oil above $78 — Strait still partially blocked, inflation chain active</div>
+        <div class="col-item">Western ETF outflows — institutional buyers absent all year</div>
+      </div>
+      <div class="col-card bull">
+        <div class="col-card-title">↑ Floor — What holds gold up</div>
+        <div class="col-item">Central bank buying — 244T Q1 2026. Structural, price-insensitive</div>
+        <div class="col-item">Iran war premium — $200-300 embedded. Exits only on physical tanker movement</div>
+        <div class="col-item">De-dollarisation — $1,000-1,500 structural premium from Russia 2022. Permanent</div>
+        <div class="col-item">Wages not accelerating — 0.3% in line, no wage-price spiral, Warsh holds</div>
+        <div class="col-item">Monthly inflation pace decelerating — three consecutive trackers below forecast</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">07</div>
+    <div class="sec-title">Geopolitical Framework — Iran and Gold</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Iran war timeline</strong> — Operation Epic Fury Feb 28 2026. Strait 70-80% blocked. Oil $72→$101-120 peak. Recovery to $4,600. MoU signed June 15. Strait gradual reopening.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Strait of Hormuz mechanics</strong> — 8-12 million barrels/day blocked (~10% global supply). Physical inventories depleting toward critical levels. Cushing at 22M barrels — 2M above operational minimum.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>MoU pattern</strong> — Iranian state media announces deal terms. White House denies. Market spikes then collapses. Repeated four times. <em>Active risk spike — do not trade without US confirmation.</em></div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>De-dollarisation</strong> — Russia 2022 sanctions weaponised the dollar. BRICS+ systematically reducing dollar reserves. $1,000-1,500 structural premium that does not exit on one data print.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>War premium exit pattern</strong> — spikes on deal hope, collapses on denial. Original $300-500 now $200-300. Exits only when tankers physically move through reopened Strait.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>What breaks the range</strong> — deal formally signed + Strait physically reopens + oil below $85 sustained + CPI falls to 3.0% → rate cuts return → real yields compress → trendline breaks.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Strikes cancelled paradox</strong> — cancelling strikes = bullish gold. Inflation chain tail risk removal (oil $140, CPI 7% avoided) is worth more than the war premium loss. Net bullish in stagflation.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">08</div>
+    <div class="sec-title">Trading Framework</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>A1 definition</strong> — score 6+ pts AND 2+ core T1 AND 1+ T2 AND all 6 hard rules confirmed. Both conditions simultaneously. Missing either = not A1.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Six hard rules</strong> — not within 10m of 9:30am · valid window 6am-2pm or 7-9pm · not Sunday night · no major event within 2h · under 2 trades · at desk and focused</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Level validity</strong> — Right away: confluences stacked + impulsive approach + fresh level (1-2nd touch) + 2+ correlators in sync. Wait: single confluence, slow grind 3+ touches, mid-session dead zone. Discard: broke through, 5th+ touch, middle of range, HTF opposing.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Entry types</strong> — right away (with trend, A1) · wait for sweep (against trend, slow grind) · wait for retest (missed breakout) · wait for 15m close (data/news day)</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Stop types</strong> — tight structural (with trend, A1, clear level) · wide swing zone (against trend, major KL, beyond sweep low not the KL itself)</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>38 fib max rule</strong> — non-negotiable ceiling on TP when buying dip against recent trend. Not a guideline — a rule.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>BE rule</strong> — move SL to BE only if structure actually breaks. Always take small partials before moving. Never move BE without reducing.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Against-trend requirements</strong> — sweep confirmed + divergence present + correlators at session extremity + overextension visible. All four needed.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">09</div>
+    <div class="sec-title">Market Profile and Technical Analysis</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Day types</strong> — trend day, range day, neutral day, news volatile day. Identified from profile structure before the session opens. Changes the entire playbook.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Open types</strong> — open drive (directional, right away valid) · open test drive (tests prior level then drives) · open rejection reverse · open auction (balanced, no direction)</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>POC</strong> — Point of Control. Gold at POC = equilibrium. Below POC before open = bearish value. Above = bullish.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Value area</strong> — VAH and VAL containing 70% of volume. Break outside VA on open = potential trend day. Rejection at VA boundary = range day.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>LVN</strong> — Low Volume Node. Thin area where price moves fast. <em>Single most important confluence for right away entries.</em> Mark these on every profile.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Range day rule</strong> — no HVA trades. Only extremity fades at VAH and VAL. Do not enter in the middle of the range.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Technical prep daily</strong> — Major KL H4, trendlines H4-H1, patterns HTF-LTF, fibs, market profile. Must be done before the session. Not optional.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 MISTAKES -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">10</div>
+    <div class="sec-title">Mistakes Identified — What Was Built to Fix Each</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="mistake-grid">
+      <div class="mistake">
+        <div><div class="mistake-name">SL too tight</div><div style="font-size:11px;color:var(--tx2)">Tight stop on swing zone or against-trend entry — stopped out by normal noise before the trade played out.</div></div>
+        <div><div class="mistake-cell-lbl">System built</div><div class="mistake-cell-val">Wide vs tight framework. Wide when: swing zone, major KL, volatile day, against trend. SL beyond sweep low not the KL itself.</div></div>
+        <div><div class="mistake-cell-lbl">Rule now</div><div class="mistake-cell-val">Stop type selected before entry as part of checklist. Context dictates the stop.</div></div>
+      </div>
+      <div class="mistake">
+        <div><div class="mistake-name">Entry not at extremity</div><div style="font-size:11px;color:var(--tx2)">Entering in the middle of the range or before price reached the confluent level.</div></div>
+        <div><div class="mistake-cell-lbl">System built</div><div class="mistake-cell-val">Level validity inspection. Middle of range is a hard discard. Extremity required. Confluences must be stacked at the level not near it.</div></div>
+        <div><div class="mistake-cell-lbl">Rule now</div><div class="mistake-cell-val">Not middle of range is a hard rule chip. Checklist will not score A1 without valid level at extremity.</div></div>
+      </div>
+      <div class="mistake">
+        <div><div class="mistake-name">Not taking profits</div><div style="font-size:11px;color:var(--tx2)">Holding past natural target. Moving to BE without taking partials first.</div></div>
+        <div><div class="mistake-cell-lbl">System built</div><div class="mistake-cell-val">Small TP mandatory for counter-trend and momentum. BE rule: always take partials before moving stop.</div></div>
+        <div><div class="mistake-cell-lbl">Rule now</div><div class="mistake-cell-val">38 fib max against trend is non-negotiable. Partial scale is a selectable target type. TP defined before entry.</div></div>
+      </div>
+      <div class="mistake">
+        <div><div class="mistake-name">Not pulling trigger</div><div style="font-size:11px;color:var(--tx2)">Seeing valid A1 setup, confirming all confluences, then freezing at execution.</div></div>
+        <div><div class="mistake-cell-lbl">System built</div><div class="mistake-cell-val">Process replaces decision. A1 checklist score means execute. Three pre-trade questions answered = enter. No additional confirmation allowed.</div></div>
+        <div><div class="mistake-cell-lbl">Rule now</div><div class="mistake-cell-val">0.01 lots eliminated. Meaningful size only. More reps at small but real size until execution is automatic.</div></div>
+      </div>
+      <div class="mistake">
+        <div><div class="mistake-name">Shorting into catalyst</div><div style="font-size:11px;color:var(--tx2)">BTC short on MoU weekend. Shorting highest beta risk asset into most risk-on catalyst of the year.</div></div>
+        <div><div class="mistake-cell-lbl">System built</div><div class="mistake-cell-val">Never short the initial move of a confirmed catalyst. Wait for bond market to push back first. It always signals before equities crack.</div></div>
+        <div><div class="mistake-cell-lbl">Rule now</div><div class="mistake-cell-val">Know which ceiling mechanism exists. BTC has none. Gold has real yields. Never short pure sentiment into confirmed risk-on.</div></div>
+      </div>
+      <div class="mistake">
+        <div><div class="mistake-name">Treating approach as short signal</div><div style="font-size:11px;color:var(--tx2)">Considering gold short because price was near the 200-day EMA before confirmed rejection.</div></div>
+        <div><div class="mistake-cell-lbl">System built</div><div class="mistake-cell-val">Approach is not the signal. Touch is not the signal. 15-minute close back below after confirmed rejection is the signal.</div></div>
+        <div><div class="mistake-cell-lbl">Rule now</div><div class="mistake-cell-val">Resistance is only tradeable after rejection is confirmed — not anticipated.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11 RULES -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">11</div>
+    <div class="sec-title">Hard Rules — What to Avoid</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="pills">
+      <div class="pill pill-red">No 0.01 lots</div>
+      <div class="pill pill-red">No tight SL on swing zones</div>
+      <div class="pill pill-red">No middle of range entries</div>
+      <div class="pill pill-red">No BE without taking partials first</div>
+      <div class="pill pill-red">No holding past logical target</div>
+      <div class="pill pill-red">No extra confirmation when A1 confirmed</div>
+      <div class="pill pill-red">No trading outside 6am-2pm / 7-9pm</div>
+      <div class="pill pill-red">No Sunday night trading</div>
+      <div class="pill pill-red">No trade within 10min of 9:30am open</div>
+      <div class="pill pill-red">No full size into binary events</div>
+      <div class="pill pill-red">No trade when not at desk and focused</div>
+      <div class="pill pill-red">No entry on 3rd touch of slow grind</div>
+      <div class="pill pill-red">No shorting confirmed catalyst initial move</div>
+      <div class="pill pill-red">No shorting assets with no ceiling (BTC)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 12 FOCUS -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">12</div>
+    <div class="sec-title">What to Focus On — Priorities</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="sec-divider">Coach prescribed — non-negotiable</div>
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>More reps</strong> — consistent trader development. Reps at meaningful size remove analysis paralysis and build automatic execution.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Technical analysis drawings</strong> — more drawings, more patterns, more trendlines, more key levels marked in advance. Technical prep is pre-market work.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Volume profile</strong> — perfect it. POC, VAH, VAL, LVN identification automatic. Day type reading from profile instant before every session.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Scale out</strong> — take money when it is there. Partial scale at T1, move stop to BE after partials, let rest run to T2.</div></div>
+    </div>
+    <div class="sec-divider">Macro reading skills</div>
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Decomposing yield moves in real time</strong> — when a headline fires immediately identify whether nominals or breakevens moved more and what that means.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Inflation regime classification</strong> — five seconds, one word, before reading any commentary. Core direction + GDP direction = regime.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Oil as inflation chain signal</strong> — above $90 = chain active = ceiling stays. Below $85 sustained = disinflation pathway opening.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Data prep before releases</strong> — three-scenario framework (hot/in-line/soft) for each sub-component. Read wages first on NFP day. Read prices first on ISM day.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Pre-event scenarios</strong> — before every major event write three outcomes, entry, stop, target, invalidation. Decision before the moment not during it.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 13 DATA -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">13</div>
+    <div class="sec-title">Key Data Releases Analysed in Real Time</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <table class="data-table">
+      <thead><tr><th>Release</th><th>Actual</th><th>Forecast</th><th>Gold impact</th></tr></thead>
+      <tbody>
+        <tr><td>PCE MoM April</td><td class="td-mono td-bull">0.2%</td><td class="td-mono">0.3%</td><td>Mildly bullish — monthly pace decelerating, Warsh cover</td></tr>
+        <tr><td>JOLTS April</td><td class="td-mono td-bear">7.618M</td><td class="td-mono">6.860M</td><td>Bearish — massive beat, labor demand reaccelerating</td></tr>
+        <tr><td>ADP May</td><td class="td-mono td-neut">122K</td><td class="td-mono">110K</td><td>Mildly bearish — private hiring beat, prior revised down</td></tr>
+        <tr><td>ISM Mfg PMI May</td><td class="td-mono td-bear">54.0</td><td class="td-mono">53.3</td><td>Mildly bearish — economy strong</td></tr>
+        <tr><td>ISM Mfg Prices May</td><td class="td-mono td-bull">82.1</td><td class="td-mono">85.3</td><td>Mildly bullish — goods prices below forecast</td></tr>
+        <tr><td>ISM Services PMI</td><td class="td-mono td-neut">54.5</td><td class="td-mono">53.7</td><td>Mixed — strong economy but employment contracting</td></tr>
+        <tr><td>ISM Services Prices</td><td class="td-mono td-bull">71.3</td><td class="td-mono">72.3</td><td>Mildly bullish — 3rd consecutive price tracker below forecast</td></tr>
+        <tr><td>ISM Services Employment</td><td class="td-mono td-bull">47.9</td><td class="td-mono">48.8</td><td>Mildly bullish — contracting, contradicts JOLTS</td></tr>
+        <tr><td>Initial Claims</td><td class="td-mono td-bull">225K</td><td class="td-mono">214K</td><td>Bullish — biggest miss since Feb 2026</td></tr>
+        <tr><td>Nonfarm Productivity</td><td class="td-mono td-bear">0.3%</td><td class="td-mono">0.8%</td><td>Stagflationary — efficiency collapsing</td></tr>
+        <tr><td>Unit Labor Costs</td><td class="td-mono td-bull">1.8%</td><td class="td-mono">2.3%</td><td>Bullish — wages not accelerating, no spiral confirmed</td></tr>
+        <tr><td><strong>NFP May</strong></td><td class="td-mono td-bear"><strong>172K</strong></td><td class="td-mono"><strong>85K</strong></td><td><strong>Strongly bearish — double consensus, JOLTS confirmed</strong></td></tr>
+        <tr><td>Avg Hourly Earnings</td><td class="td-mono td-neut">0.3%</td><td class="td-mono">0.3%</td><td>Neutral — in line, saved the floor, Warsh holds June 17</td></tr>
+        <tr><td>Unemployment Rate</td><td class="td-mono td-neut">4.3%</td><td class="td-mono">4.3%</td><td>Neutral — stable, labor market not cracking</td></tr>
+        <tr><td>GDP Q1 revision</td><td class="td-mono td-bull">1.6%</td><td class="td-mono">2.0%</td><td>Mildly bullish — economy softer than expected</td></tr>
+        <tr><td>Michigan 5yr Infl.</td><td class="td-mono td-bear">3.9%</td><td class="td-mono">3.4%</td><td>Bearish — de-anchoring signal, activated Waller trigger</td></tr>
+        <tr><td>Core CPI MoM May</td><td class="td-mono td-bull">0.2%</td><td class="td-mono">0.3%</td><td>Mildly bullish — monthly pace decelerating, Warsh cover</td></tr>
+        <tr><td>PPI MoM May</td><td class="td-mono td-bear">1.1%</td><td class="td-mono">0.7%</td><td>Bearish — pipeline full, June/July CPI will be worse</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 14 TOOLS -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="sec-num">14</div>
+    <div class="sec-title">Tools and Systems Built</div>
+    <div class="sec-chevron">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="bullets">
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Gold pre-trade checklist HTML</strong> — daily Chrome-usable tool, 8 sections, auto-saves per day, resets each morning. Bookmark for one-click daily use.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Macro Sim trainer</strong> — 17 modules, 200+ scenarios, keyboard navigation, Pro Mixed Drill 25 questions. Daily drill before opening charts.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Gold Live Board</strong> — AI-powered dashboard. Drop TradingView screenshots, Claude reads everything and fills the entire board automatically. Five macro sections, buy mode checklist, session narrative.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Gold Regime Playbook</strong> — six inflation regimes + four business cycle phases with gold reaction, trading rules, and historical examples for each.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Gold Regime Roadmap</strong> — 2023-2026 price roadmap mapped to regimes. $1,820→$5,597 ATH→$4,213 current with lessons at each phase.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Sunday strategy template</strong> — five sections: macro context, Fed reaction function, technical context, weekly calendar with scenarios, trading thesis.</div></div>
+      <div class="bullet"><div class="bullet-dot"></div><div><strong>Mistake list</strong> — 19 categorised mistakes (technical, macro, process, psychological) with the master rule at the bottom.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggle(head){
+  const body=head.nextElementSibling;
+  const chev=head.querySelector('.sec-chevron');
+  const open=body.classList.toggle('open');
+  chev.classList.toggle('open',open);
+}
+function expandAll(){
+  document.querySelectorAll('.section-body').forEach(b=>b.classList.add('open'));
+  document.querySelectorAll('.sec-chevron').forEach(c=>c.classList.add('open'));
+}
+function collapseAll(){
+  document.querySelectorAll('.section-body').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.sec-chevron').forEach(c=>c.classList.remove('open'));
+}
+</script>
+</body>
+</html>
